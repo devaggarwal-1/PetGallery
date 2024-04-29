@@ -1,4 +1,4 @@
-import React, { lazy, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import useFetchPets from '../hooks/useFetchPets';
 import { Pet } from '../hooks/useFetchPets';
@@ -86,7 +86,6 @@ const Searching = styled.div`
 const PetGallery = () => {
     const { data, loading, error } = useFetchPets('https://eulerity-hackathon.appspot.com/pets');
     const [pets, setPets] = useState<Pet[]>([])
-    const [sortOrder, setSortOrder] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
 
 
@@ -99,7 +98,7 @@ const PetGallery = () => {
     }, [data]);
 
     const sortPets = (order: string) => {
-        setSortOrder(order);
+
         const sortedPets = [...pets].sort((a, b) => {
             // if the order is 'ASC' will sort in ascending order
             if (order === 'ASC') {
